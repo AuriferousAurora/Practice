@@ -1,0 +1,8 @@
+function SimpleAdding(num) {
+    let array = Array.apply(null, {length: num + 1}).map(Number.call, Number).slice(1);
+    addedArray = array.reduce((accumulator, currentValue) => {
+        return accumulator + currentValue;
+    });
+    return addedArray;
+}
+
