@@ -6,3 +6,5 @@ function KaprekarsConstant (num) {
 }
 
 KaprekarsConstant(one);
+
+KaprekarsConstant(two);
