@@ -1,5 +1,5 @@
 const one = 1234;
-const two = 3345;
+const two = 3456;
 
 function KaprekarsConstant (num) {
 
