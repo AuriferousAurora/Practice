@@ -84,24 +84,27 @@ function nthRecursive (list, n) {
 
 // Object equivalence function. Compares objects based on properties instead of identity.
 
-function deepEqual (obj1, obj2) {
-  if (typeof(obj1) === 'object' && typeof(obj2) === 'object') {
-    const o1keys = Object.keys(obj1);
-    const o2keys = Object.keys(obj2);
-    console.log(typeof(o1keys));
-    if (o1keys.length === o2keys.length) {
-      // for (let i = 0; i < o1keys.length; i++) {
-      //   console.log(typeof(o1keys));
-      // }
+function deepEqual (a, b) {
+  // Checks whether paramaters are equal. If false, control passes to next line.
+  if (a === b) return true;
+  // Checks whether either parameter is equal to null or not an object. If false, controle pases to next line.
+  if (a === null || typeof(a) != 'object' || b === null || typeof(b) != 'object') return false;
+  // Uses Object.keys() to create and array (or array-like) containing each top-level key in the parameter object.
+  const pA = Object.keys(a), pB = Object.keys(b);
+  // Checks to see if length of top-level property arrays are equal.
+  if (pA.length != pB.length) return false;
+  // Verifies that every key in the first object exists in the second object. If not, returns false.
+  for (let prop of pA) { 
+    if(b.hasOwnProperty(prop)) {
+      if (!deepEqual(a[prop], b[prop])) { return false; }
     } else { return false; }
-  } else { return 'Invalid input: one of the two input paramters are not an object.'; }
+  } return true;
 }
 
-let obj1 = { here: { is: 'an' }, object: 2};
-let obj2 = { here: { is: 'an' }, object1: 2};
+let o1 = { here: { is: 'a' }, object: 2};
+let o2 = { here: { is: 'an' }, object: 2};
 
-console.log(deepEqual(obj1, obj2));
-
+console.log(deepEqual(o1, o2));
 
 
 
