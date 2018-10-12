@@ -1,13 +1,22 @@
-const binary = function (n) {
-  let array = [];
-  // For whatever the value of the argument, this for loop creates an array composed of zeroes with a length equal to the length of the number in binary.
-  for (let i = 1; i <= n; i *= 2) { array.unshift(0); } 
-  // So far, all this does is check to see if the first index in the array ought to be a one.
-  for (let i = 0; i < array.length; i++) {
-    if (n >= (Math.pow(2, (array.length - 1) ))) { array[0] = 1; }
+function addBinary(a,b) {
+let array = [];
+let sum = a + b;
+for (let i = 1; i <= sum; i *= 2) { array.unshift(0); }
+let temp = sum;
+for (let i = 0; i <= array.length; i++) {
+  console.log('Current temp: ' + temp);
+  let expo = array.length - 1 - i;
+  let result = (Math.pow(2, expo));
+  console.log('Current result: ' + result);
+  if (temp >= result) {
+    array[i] = 1;
+    temp -= result;
   }
-  // And then it returns the array.
-  return array;
+  let string = array.join('');
+  return string;
+}
 }
 
-console.log((binary(17)));
+console.log(addBinary(1, 2));
+
+// After sumbitting this, the solutions informed me of the utility of Object.prototype.toString(2). So, yeah...
