@@ -45,5 +45,8 @@ Matrix.prototype[Symbol.iterator] = function() {
   return new MatrixIterator(this);
 }
 
-let matrix = new Matrix(2, 2, (x, y) => `value ${x}, ${y}`);
-for (let {x, y, value} of matrix) { console.log(x, y, value); }
+let matrix = new Matrix(4, 4, (x, y) => `value ${x}, ${y}`);
+// for (let {x, y, value} of matrix) { console.log(x, y, value); }
+
+console.log(matrix.set(0, 2, 'value 7, 14'));
+console.log(matrix.content);

@@ -1,55 +1,75 @@
-class Matrix {
-  constructor(width, height, element = (x, y) => undefined) {
-    this.width = width;
-    this.heigh = height;
-    this.content = [];
+class Vec {
+  constructor(x, y) { this.x = x; this.y = y; }
 
-    for (let y = 0; y < height; y++) {
-      for (let x = 0; x < width; x++) {
-        this.content[y * width + x] = element(x, y);
-      }
+  plus(other) { return new Vec(this.x + other.x, this.y + other.y); }
+  minus(other) { return new Vec(this.x - other.x, this.y - other.y); }
+  get length() { return Math.sqrt(this.x * this.x + this.y * this.y); }
+}
+
+// console.log(new Vec(1, 2).plus(new Vec(2, 3)));
+// console.log(new Vec(1, 2).minus(new Vec(2, 3)));
+// console.log(new Vec(3, 4).length);
+
+class Group {
+  constructor() {
+    this.members = [];
+  }
+
+  add(value) {
+    if (!this.has(value)) { 
+      this.members.push(value); 
     }
   }
 
-  get(x, y) {
-    return this.content[y * this.width + x];
+  delete(value) { 
+    this.members = this.members.filter(v => v !== value);
   }
-  set(x, y, value) {
-    this.content[y * this.width + x] = value;
+
+  has(value){ 
+    return this.members.includes(value); 
+  }
+
+  static from(collection) { 
+    let group = new Group;
+    for (let value of collection) {
+      group.add(value);
+    }
+    return group;
+  }
+
+  [Symbol.iterator]() {
+    return new GroupIterator(this);
   }
 }
 
-class MatrixIterator {
-  constructor(matrix) {
-    this.x = 0;
-    this.y = 0;
-    this.matrix = matrix;
+// let group = Group.from([10, 20]);
+// console.log(group.has(10));
+// console.log(group.has(30));
+// group.add(10);
+// group.delete(10);
+// console.log(group.has(10));
+
+class GroupIterator {
+  constructor(group) {
+    this.group = group;
+    this.position = 0;
   }
 
   next() {
-    if (this.y == this.matrix.height) return {done: true};
-    let value = { x: this.x,
-                  y: this.y,
-                  value: this.matrix.get(this.x, this.y)};
-    this.x++;
-    if (this.x == this.matrix.width) {
-      this.x = 0;
-      this.y++;
+    if (this.position >= this.group.members.length) {
+      return { done: true };
+    } else {
+      let result = { value: this.group.members[this.position],
+                     done: false };
+      this.position++;
+      return result;
     }
-    return {value, done: false};
   }
 }
 
-Matrix.prototype[Symbol.iterator] = function() {
-  return new MatrixIterator(this);
-}
-
-// let matrix = new Matrix(2, 2, (x, y) => `value ${x}, ${y}`);
-// for (let {x, y, value} of matrix) {
-//   console.log(x, y, value);
+// for (let value of Group.from(["a", "b", "c"])) {
+//   console.log(value);
 // }
 
-// The above still needs to be solved. I cannot find a difference between it and the example in the corresponding chapter of Eloquent JavaScript, but I'll return to it. It may be helpful to read through the MDN page on classes or the section of Eloquent JavaScript the details the same.
-
-
-
+let map = {one: true, two: true, hasOwnProperty: true};
+console.log(Object.prototype.hasOwnProperty.call(map, 'one'));
