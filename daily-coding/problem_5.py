@@ -11,11 +11,23 @@ def cons(a, b):
     return pair
 
 # Implement car and cdr.
+def car(pair):
+  return pair[0]
+
+def cdr(pair):
+  return pair[1]
 
 
 class TestCase(unittest.TestCase):
 
-  # Test code.
-  pass
+  pair = (1, 2)
+
+  def test_car_returns_first(self):
+    first = car(self.pair)
+    self.assertEqual(first, self.pair[0])
+    
+  def test_cdr_returns_second(self):
+    second = cdr(self.pair)
+    self.assertEqual(second, self.pair[1])
 
 unittest.main()
