@@ -1,0 +1,6 @@
+- truth table
+- binary tree (use JavaScript to input data and retrieve data)
+- linked list
+- array
+- queue
+- big O notation
