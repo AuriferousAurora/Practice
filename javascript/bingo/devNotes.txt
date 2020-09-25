@@ -1,0 +1,9 @@
+So, I have the bones of a bingo game written. The next step is to determine what features need to be added so that I can determine what order to add them in and how to add them.
+
+[X] I'll want to assign a player name to each board.
+
+[ ] A big one is determining a winner. I'll need to write a function that checks every board after each number is drawn to see if the status of one column, one row, or one diagonal series of squares is true and then end the game. At that point, I'll have the business logic done and have a working game.
+
+[ ] Obviosuly a UI would be great. It makes sense to use HTML/CSS for the UI since I can host it easily and maybe even teach my students how to do it (the more time I spend writing it, the harder it seems. Learning loops, functions, objects-- specifically class functions which return objects, and a few other concepts that I likely forgot seems like a lot, but who knows. They're smart).
+
+[ ] At some point I need to go back and make sure that the code I wrote to generate ranges and to draw numbers isn't broken. I don't think it is, but I'm still only get like 75% of how that is happening. 
