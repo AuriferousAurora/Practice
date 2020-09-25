@@ -2,7 +2,11 @@ So, I have the bones of a bingo game written. The next step is to determine what
 
 [X] I'll want to assign a player name to each board.
 
-[ ] A big one is determining a winner. I'll need to write a function that checks every board after each number is drawn to see if the status of one column, one row, or one diagonal series of squares is true and then end the game. At that point, I'll have the business logic done and have a working game.
+[ ] A big one is determining a winner. I wrote some code to determine a winner, but it's not currently functioning properly. I'll need to review it: method named 'checkForWin' on ln 70.
+
+[ ] I need to write code to recursively check that the number I'm drawing is not in the array of previously drawn numbers.
+
+[ ] I'm pretty sure the code that I wrote to exclude duplicate ranges is not correct. (lns 21, 158)
 
 [ ] Obviosuly a UI would be great. It makes sense to use HTML/CSS for the UI since I can host it easily and maybe even teach my students how to do it (the more time I spend writing it, the harder it seems. Learning loops, functions, objects-- specifically class functions which return objects, and a few other concepts that I likely forgot seems like a lot, but who knows. They're smart).
 
